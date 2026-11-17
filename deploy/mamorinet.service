@@ -1,0 +1,24 @@
+# /etc/systemd/system/mamorinet.service
+[Unit]
+Description=Nichinan Mamorinet (FastAPI)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=mamorinet
+Group=mamorinet
+WorkingDirectory=/opt/mamorinet
+EnvironmentFile=/opt/mamorinet/.env
+# 見守り判定・地震監視をアプリの中で動かすため、ワーカーは必ず1つ
+ExecStart=/opt/mamorinet/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 1
+Restart=always
+RestartSec=5
+# 安全のための制限
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/mamorinet
+
+[Install]
+WantedBy=multi-user.target

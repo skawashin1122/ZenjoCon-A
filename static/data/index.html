@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>データで見る日南｜にちなん・まもりネット</title>
+<link rel="stylesheet" href="data.css">
+</head>
+<body>
+<main class="viz-root">
+  <a href="../" class="back">← まもりネット</a>
+  <h1>データで見る日南</h1>
+  <p class="lead">なぜ見守りが必要なのか。日南市総合政策課『日南市ミニ統計』令和4年〜令和8年版（5冊）を、
+    <strong>冊子の発行年ではなく調査時点</strong>で並べ直しました。</p>
+
+  <section class="tiles" aria-label="主な数字">
+    <div class="tile"><div class="num">約1.3<span>倍</span></div><div class="cap">人口千人あたりの救急出動<br>（令和3年→令和7年）</div></div>
+    <div class="tile"><div class="num">−7.9<span>%</span></div><div class="cap">人口（令和3年→令和7年<br>各年10月1日）</div></div>
+    <div class="tile"><div class="num">9→7<span>施設</span></div><div class="cap">市内の病院<br>（R3.12.31→R5.10.1）</div></div>
+    <div class="tile"><div class="num">38.6<span>%</span></div><div class="cap">高齢化率<br>（令和2年国勢調査）</div></div>
+  </section>
+
+  <section class="chart-card" id="c-ambulance">
+    <h2>救急車の出動件数</h2>
+    <p class="sub">暦年（1〜12月）。人口は減っているのに、5年で <strong>+484件（+20.9%）</strong></p>
+    <div class="chart" role="img" aria-label="救急車出動件数 令和3年2321件、令和4年2707件、令和5年2984件、令和6年2802件、令和7年2805件"></div>
+    <p class="src">出典：日南市『日南市ミニ統計』R4〜R8版（消防）。調査期間：各暦年</p>
+  </section>
+
+  <section class="chart-card" id="c-per1000">
+    <h2>人口千人あたりの救急出動件数</h2>
+    <p class="sub">人口が変わっているので、件数ではなく割合で比べる。46.6件 → 61.1件</p>
+    <div class="chart" role="img" aria-label="人口千人あたり出動 令和3年46.6、令和4年55.3、令和5年62.2、令和6年59.4、令和7年61.1"></div>
+    <p class="src">出典：同上（出動件数）、人口は各年10月1日（令和7年は国勢調査速報値）。千人あたりは本研究で計算</p>
+  </section>
+
+  <section class="chart-card" id="c-beds">
+    <h2>市内の病院の病床数</h2>
+    <p class="sub">病院 9施設 → 7施設、病床 −138床（−11.0%）。受け皿は減っている</p>
+    <div class="chart" role="img" aria-label="病院の病床数 R3.12.31 1260床、R4.10.1 1213床、R5.10.1 1122床"></div>
+    <p class="src">出典：同上（保健衛生）R4・R6・R7・R8版。R7版とR8版は同じ調査時点（R5.10.1）の数値のため1回だけ表示</p>
+  </section>
+
+  <section class="chart-card" id="c-district">
+    <h2>地区別の人口の増減率（R5.4.1 → R8.4.1）</h2>
+    <p class="sub">色は1世帯あたりの人数（R8）。<strong>2人未満の地区ほど減り方が大きい</strong></p>
+    <ul class="legend" aria-label="凡例">
+      <li><span class="sw s2"></span>1世帯あたり2人未満（一人暮らし・高齢夫婦が多いと考えられる）</li>
+      <li><span class="sw s1"></span>2人以上</li>
+    </ul>
+    <div class="chart" role="img" aria-label="地区別人口増減率。細田−10.8%、油津−10.2%、酒谷−9.9%、鵜戸−9.6%、南郷−9.1%、北郷−7.2%、飫肥−5.2%、東郷−4.7%、吾田−2.5%"></div>
+    <p class="src">出典：同上（地区別人口・世帯）R6・R8版。R8版の地区別人口は推計値</p>
+  </section>
+
+  <section class="notes">
+    <h2>データを扱う上で気づいた注意点</h2>
+    <ol>
+      <li><strong>冊子によって集計期間がバラバラ</strong>：消防は暦年、人口動態は年度、保健衛生は12/31や10/1時点 → 調査時点で並べ直した。</li>
+      <li><strong>同じ数値の使い回し</strong>：R7版とR8版の保健衛生（R5.10.1）は同じ数値。</li>
+      <li><strong>矛盾するデータ</strong>：R5版の診療所数（R2.10.1・40）と R4版（R3.12.31・50）が合わない → 元の調査で確認が必要。</li>
+      <li><strong>推計値と確定値の混在</strong>：R8版の地区別人口は推計値、R7国勢調査は速報値。</li>
+    </ol>
+  </section>
+  <div id="tip" class="tip" role="tooltip" hidden></div>
+</main>
+<script src="data.js"></script>
+</body>
+</html>

@@ -596,3 +596,14 @@ def should_alert(intensity: str | None, threshold: str = "5-") -> bool:
 
 > **応募前に確認すること**：気象庁の日南市の市町村コード（4520400）、LINE公式アカウントの料金と開設者（学校名義にするか）、実証実験のサーバー環境（4-4）、日南市の緊急通報装置の有無、上記の市の情報の出典URL（応募書類に記載するため）。
 
+
+---
+
+## 実装（このリポジトリ）
+
+設計書 v3 の機能①〜④を実装済み。開発・設置・運用の手順は **[docs/SETUP.md](docs/SETUP.md)**。
+
+```bash
+pip install -r requirements-dev.txt && pytest -q     # 自動テスト
+uvicorn app.main:app --reload                         # LINE の鍵なしでもドライランで動く
+```

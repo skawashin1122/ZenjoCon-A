@@ -1,0 +1,85 @@
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --bg: #fbfaf7;
+  --panel: #ffffff;
+  --line: #d6d3cc;
+  --accent: #b3261e;
+  --accent-ink: #ffffff;
+  --focus: #1f5fbf;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", "Noto Sans JP", Meiryo, sans-serif;
+  font-size: 19px; line-height: 1.6;
+}
+.screen { max-width: 760px; margin: 0 auto; padding: 16px 16px 48px; }
+.back { color: var(--muted); text-decoration: none; font-size: 16px; }
+h1 { font-size: 34px; margin: 8px 0 4px; letter-spacing: .04em; }
+.lead { margin: 0 0 12px; }
+.privacy { background: #eef5ec; border: 2px solid #4c7d45; border-radius: 10px; padding: 12px 14px; font-size: 17px; }
+fieldset { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; margin: 18px 0; padding: 12px 16px 16px; }
+legend { font-weight: 700; font-size: 21px; padding: 0 6px; }
+.must { background: var(--accent); color: var(--accent-ink); font-size: 14px; border-radius: 6px; padding: 2px 8px; margin-left: 6px; vertical-align: middle; }
+label { display: block; margin-top: 10px; font-weight: 600; }
+input:not([type=checkbox]):not([type=file]), select {
+  display: block; width: 100%; margin-top: 4px; padding: 12px; font-size: 20px;
+  border: 2px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink);
+}
+input:focus, select:focus, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.pair { border-left: 4px solid var(--line); padding-left: 12px; margin-top: 8px; }
+.checks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.checks label { display: inline-flex; align-items: center; gap: 8px; margin: 0; font-weight: 500;
+  border: 2px solid var(--line); border-radius: 999px; padding: 8px 14px; background: #fff; cursor: pointer; }
+.checks input { width: 24px; height: 24px; margin: 0; }
+.checks label:has(input:checked) { border-color: var(--ink); background: #f1efe9; font-weight: 700; }
+.hint { color: var(--muted); font-size: 16px; margin: 6px 0 0; }
+.saved { color: #2f6b2a; font-size: 16px; min-height: 1.6em; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+button, .filebtn {
+  font: inherit; font-size: 18px; font-weight: 700; padding: 14px 18px; border-radius: 10px;
+  border: 2px solid var(--ink); background: #fff; color: var(--ink); cursor: pointer; flex: 1 1 220px; text-align: center;
+}
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button.danger { border-color: #8a1c1c; color: #8a1c1c; }
+.actions.sub button, .actions.sub .filebtn { font-size: 16px; padding: 10px 14px; }
+.filebtn { display: inline-block; margin: 0; }
+.filebtn input { display: none; }
+.disclaimer { font-size: 15px; color: var(--muted); }
+.print-only { display: none; }
+
+/* ------------ 印刷 ------------ */
+@media print {
+  @page { size: A4 portrait; margin: 12mm; }
+  body { background: #fff; font-size: 12pt; }
+  .screen { display: none; }
+  body:not(.p-wallet):not(.p-sticker) #print-a4, body.p-wallet #print-wallet, body.p-sticker #print-sticker { display: block; }
+}
+/* A4（冷蔵庫用）：大きな文字 */
+.a4 { color: #000; }
+.a4 h2 { font-size: 30pt; margin: 0; border-bottom: 3pt solid #000; padding-bottom: 2mm; display: flex; justify-content: space-between; align-items: baseline; }
+.a4 h2 small { font-size: 11pt; font-weight: 400; }
+.a4 .who { font-size: 22pt; margin: 4mm 0 2mm; }
+.a4 table { width: 100%; border-collapse: collapse; }
+.a4 th, .a4 td { border: 1pt solid #000; padding: 2.5mm 3mm; text-align: left; vertical-align: top; }
+.a4 th { width: 30%; background: #eee; font-size: 14pt; }
+.a4 td { font-size: 17pt; font-weight: 700; }
+.a4 tr.big td { font-size: 20pt; }
+.a4 .foot { margin-top: 3mm; font-size: 11pt; display: flex; justify-content: space-between; }
+/* 名刺サイズ（91×55mm）：切り取り線つき、2枚 */
+.wallet-sheet { display: flex; flex-direction: column; gap: 6mm; }
+.wallet { width: 91mm; height: 55mm; border: 0.6pt dashed #000; padding: 3mm; font-size: 7.5pt; line-height: 1.35; overflow: hidden; color: #000; }
+.wallet h3 { margin: 0 0 1mm; font-size: 10.5pt; display: flex; justify-content: space-between; }
+.wallet h3 small { font-size: 6.5pt; font-weight: 400; }
+.wallet dl { margin: 0; display: grid; grid-template-columns: 17mm 1fr; column-gap: 1.5mm; }
+.wallet dt { font-weight: 700; }
+.wallet dd { margin: 0; }
+/* シール */
+.sticker-sheet { display: grid; grid-template-columns: repeat(2, 80mm); gap: 8mm; }
+.sticker { width: 80mm; height: 80mm; border: 4pt solid #b3261e; border-radius: 6mm; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; color: #000; }
+.sticker .s1 { font-size: 26pt; font-weight: 900; color: #b3261e; }
+.sticker .s2 { font-size: 15pt; font-weight: 700; margin-top: 2mm; }
+.sticker .s3 { font-size: 10pt; margin-top: 3mm; }

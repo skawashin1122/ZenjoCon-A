@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://xml.kishou.go.jp/jmaxml1/" xmlns:jmx="http://xml.kishou.go.jp/jmaxml1/">
+<Control>
+<Title>震源・震度に関する情報</Title>
+<DateTime>2026-11-20T00:05:00Z</DateTime>
+<Status>通常</Status>
+<EditorialOffice>福岡管区気象台</EditorialOffice>
+<PublishingOffice>気象庁</PublishingOffice>
+</Control>
+<Head xmlns="http://xml.kishou.go.jp/jmaxml1/informationBasis1/">
+<Title>震源・震度情報</Title>
+<ReportDateTime>2026-11-20T09:05:00+09:00</ReportDateTime>
+<TargetDateTime>2026-11-20T09:05:00+09:00</TargetDateTime>
+<EventID>20261120090200</EventID>
+<InfoType>発表</InfoType>
+<Serial>1</Serial>
+<InfoKind>地震情報</InfoKind>
+<InfoKindVersion>1.0_1</InfoKindVersion>
+<Headline>
+<Text>２０日０９時０２分ころ、地震がありました。</Text>
+</Headline>
+</Head>
+<Body xmlns="http://xml.kishou.go.jp/jmaxml1/body/seismology1/" xmlns:jmx_eb="http://xml.kishou.go.jp/jmaxml1/elementBasis1/">
+<Earthquake>
+<OriginTime>2026-11-20T09:02:00+09:00</OriginTime>
+<ArrivalTime>2026-11-20T09:02:00+09:00</ArrivalTime>
+<Hypocenter>
+<Area>
+<Name>日向灘</Name>
+<Code type="震央地名">790</Code>
+<jmx_eb:Coordinate description="北緯３１．７度　東経１３１．７度　深さ　３０ｋｍ" >+31.7+131.7-30000/</jmx_eb:Coordinate>
+</Area>
+</Hypocenter>
+<jmx_eb:Magnitude type="Mj" description="Ｍ６．５">6.5</jmx_eb:Magnitude>
+</Earthquake>
+<Intensity>
+<Observation>
+<MaxInt>5-</MaxInt>
+<Pref><Name>宮崎県</Name><Code>45</Code><MaxInt>5-</MaxInt>
+<Area><Name>宮崎県南部平野部</Name><Code>762</Code><MaxInt>5-</MaxInt>
+<City><Name>日南市</Name><Code>4520400</Code><MaxInt>5-</MaxInt>
+<IntensityStation><Name>日南市中央通</Name><Code>4520430</Code><Int>5-</Int></IntensityStation>
+</City>
+<City><Name>宮崎市</Name><Code>4520100</Code><MaxInt>4</MaxInt>
+<IntensityStation><Name>宮崎市松橋</Name><Code>4520120</Code><Int>4</Int></IntensityStation>
+</City>
+</Area>
+</Pref>
+</Observation>
+</Intensity>
+</Body>
+</Report>

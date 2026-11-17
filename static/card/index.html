@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 入力した内容をどこにも送らないことを、ブラウザの仕組みで保証する（通信はすべて禁止） -->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; connect-src 'none'; form-action 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>もしもカード｜にちなん・まもりネット</title>
+<link rel="stylesheet" href="card.css">
+</head>
+<body>
+<div class="screen">
+  <header class="top">
+    <a href="../" class="back">← まもりネット</a>
+    <h1>もしもカード</h1>
+    <p class="lead">救急や災害のとき、本人が話せなくても<br>救急隊・避難所の人に伝わるように、<strong>冷蔵庫と非常袋</strong>に入れておくカードです。</p>
+    <div class="privacy" role="note">
+      <strong>🔒 入力した内容は、このスマホの中だけで使います。</strong><br>
+      インターネットには送りません（このページは通信そのものを止めています）。
+      保存先はこのスマホのブラウザと、「ファイルに書き出す」で作ったファイルだけです。
+    </div>
+  </header>
+
+  <form id="card-form" autocomplete="off" novalidate>
+    <fieldset>
+      <legend>1. ご本人</legend>
+      <label>お名前<input name="name" required></label>
+      <label>ふりがな<input name="kana"></label>
+      <label>生年月日<input name="birth" type="date"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. 家族の連絡先 <span class="must">いちばん大事</span></legend>
+      <div class="pair">
+        <label>1人目 お名前<input name="fam1_name"></label>
+        <label>続きがら<input name="fam1_rel" placeholder="長男・長女 など"></label>
+        <label>電話番号<input name="fam1_tel" type="tel" inputmode="tel"></label>
+      </div>
+      <div class="pair">
+        <label>2人目 お名前<input name="fam2_name"></label>
+        <label>続きがら<input name="fam2_rel"></label>
+        <label>電話番号<input name="fam2_tel" type="tel" inputmode="tel"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. かかりつけの病院</legend>
+      <label>病院・医院の名前<input name="hosp_name" list="hosp-list"></label>
+      <datalist id="hosp-list"><option value="県立日南病院"></option></datalist>
+      <label>電話番号<input name="hosp_tel" type="tel" inputmode="tel"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4. 持病</legend>
+      <div class="checks" data-name="disease">
+        <label><input type="checkbox" value="高血圧">高血圧</label>
+        <label><input type="checkbox" value="糖尿病">糖尿病</label>
+        <label><input type="checkbox" value="心臓病">心臓病</label>
+        <label><input type="checkbox" value="脳卒中（脳梗塞など）">脳卒中（脳梗塞など）</label>
+        <label><input type="checkbox" value="ぜんそく">ぜんそく</label>
+        <label><input type="checkbox" value="腎臓病">腎臓病</label>
+        <label><input type="checkbox" value="認知症">認知症</label>
+        <label><input type="checkbox" value="がん">がん</label>
+      </div>
+      <label>そのほか<input name="disease_other"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>5. 薬</legend>
+      <label>お薬手帳の保管場所<input name="med_book" placeholder="例：台所の引き出しの上の段"></label>
+      <p class="hint">薬の名前を全部書き写すと、書き間違いや更新忘れが起きます。お薬手帳の場所を書いてください。</p>
+      <div class="checks" data-name="med_important">
+        <label><input type="checkbox" value="血をサラサラにする薬">血をサラサラにする薬</label>
+        <label><input type="checkbox" value="インスリン・糖尿病の注射">インスリン・糖尿病の注射</label>
+        <label><input type="checkbox" value="心臓の薬">心臓の薬</label>
+        <label><input type="checkbox" value="ステロイド">ステロイド</label>
+      </div>
+      <label>特に大事な薬（そのほか）<input name="med_other"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>6. アレルギー</legend>
+      <div class="checks" data-name="allergy">
+        <label><input type="checkbox" value="なし">なし</label>
+        <label><input type="checkbox" value="薬">薬</label>
+        <label><input type="checkbox" value="食べ物">食べ物</label>
+      </div>
+      <label>くわしく<input name="allergy_other" placeholder="例：ペニシリン、そば"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>7. マイナ保険証</legend>
+      <label>保管場所<input name="myna" placeholder="例：仏壇の横の黒いバッグ"></label>
+      <p class="hint">救急隊が「マイナ救急」で使うことがあります。</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>8. 避難</legend>
+      <label>避難先<input name="shelter" placeholder="例：○○小学校"></label>
+      <label>避難のとき
+        <select name="evac_help">
+          <option value="">えらんでください</option>
+          <option>ひとりで避難できる</option>
+          <option>手助けが必要</option>
+          <option>わからない</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>9. 生活のこと</legend>
+      <div class="checks" data-name="life">
+        <label><input type="checkbox" value="杖">杖</label>
+        <label><input type="checkbox" value="車いす">車いす</label>
+        <label><input type="checkbox" value="補聴器">補聴器</label>
+        <label><input type="checkbox" value="入れ歯">入れ歯</label>
+        <label><input type="checkbox" value="眼鏡">眼鏡</label>
+        <label><input type="checkbox" value="ペットがいる">ペットがいる</label>
+      </div>
+      <label>そのほか<input name="life_other" placeholder="例：耳が遠いので大きな声で"></label>
+    </fieldset>
+
+    <p class="saved" id="saved" aria-live="polite"></p>
+
+    <div class="actions">
+      <button type="button" class="primary" data-print="a4">🖨 A4で印刷（冷蔵庫用）</button>
+      <button type="button" data-print="wallet">🖨 名刺サイズで印刷（財布・非常袋用）</button>
+      <button type="button" data-print="sticker">🖨 「もしもカードあります」シール</button>
+    </div>
+    <div class="actions sub">
+      <button type="button" id="export">💾 ファイルに書き出す</button>
+      <label class="filebtn">📂 ファイルを読み込む<input type="file" id="import" accept="application/json,.json"></label>
+      <button type="button" id="clear" class="danger">🗑 すべて消す</button>
+    </div>
+    <p class="hint">機種変更のときは「ファイルに書き出す」で作ったファイルを、新しいスマホで読み込んでください。<br>
+    家族が代わりに入力・印刷して、実家に届けることもできます。</p>
+    <p class="hint">内容が変わったら作り直してください。<strong>半年に1回</strong>は見直しましょう。</p>
+  </form>
+  <p class="disclaimer">※このカードは情報を伝えるためのものです。医療の判断はしません。具合が悪いときは迷わず119番へ。</p>
+</div>
+
+<!-- ここから下は印刷用（画面には出ない） -->
+<section id="print-a4" class="print-only" aria-hidden="true"></section>
+<section id="print-wallet" class="print-only" aria-hidden="true"></section>
+<section id="print-sticker" class="print-only" aria-hidden="true"></section>
+
+<script src="card.js"></script>
+</body>
+</html>
