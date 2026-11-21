@@ -42,6 +42,22 @@ def test_なりすましは拒否(svc):
     assert r.status_code == 400
 
 
+def test_不正なJSONは拒否(svc):
+    body = b"{"
+    with make_client(svc) as c:
+        r = c.post("/callback", content=body, headers={"X-Line-Signature": sign("test-secret", body)})
+    assert r.status_code == 400
+    assert r.json()["detail"] == "invalid JSON"
+
+
+def test_eventsが配列でなければ拒否(svc):
+    body = b'{"events":{}}'
+    with make_client(svc) as c:
+        r = c.post("/callback", content=body, headers={"X-Line-Signature": sign("test-secret", body)})
+    assert r.status_code == 400
+    assert r.json()["detail"] == "invalid webhook payload"
+
+
 def test_静的ページ(svc):
     with make_client(svc) as c:
         assert c.get("/healthz").json()["ok"]

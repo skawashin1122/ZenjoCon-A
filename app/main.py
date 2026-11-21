@@ -53,7 +53,12 @@ def create_app(settings: Settings | None = None, service: Service | None = None,
         body = await request.body()
         if not verify_signature(settings.channel_secret, body, request.headers.get("X-Line-Signature", "")):
             raise HTTPException(status_code=400, detail="invalid signature")
-        payload = json.loads(body or b"{}")
+        try:
+            payload = json.loads(body or b"{}")
+        except json.JSONDecodeError:
+            raise HTTPException(status_code=400, detail="invalid JSON") from None
+        if not isinstance(payload, dict) or not isinstance(payload.get("events", []), list):
+            raise HTTPException(status_code=400, detail="invalid webhook payload")
         svc: Service = request.app.state.svc
         for ev in payload.get("events", []):
             try:
